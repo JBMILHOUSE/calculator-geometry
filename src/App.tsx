@@ -1,11 +1,9 @@
-// import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
 import Square from './pages/Square';
 import Circle from './pages/Circle';
 
 function App() {
-  // const [count, setCount] = useState(0);
 
   return (
     <Router>
