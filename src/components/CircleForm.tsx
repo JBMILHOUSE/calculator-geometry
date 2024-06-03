@@ -1,12 +1,24 @@
 import { useState } from 'react';
+import { calculateCircle } from '../api/api';
 
 const CircleForm: React.FC = () => {
   const [radius, setRadius] = useState<number>();
-  const [circunference, setCircunference] = useState<number>();
-  const [area, setArea] = useState<number>();
+  const [result, setResult] = useState<{ perimeter: number, area: number } | null>();
 
-  const calculateCircle = () => {
-   console.log('calculo')
+  const handleCalculateCircle = async () => {
+
+    if(radius !== undefined) {
+      try {
+        
+        const dadosCirculo = await calculateCircle(radius);
+        setResult(dadosCirculo)
+
+      } catch (error) {
+        console.error(error)
+      }
+     } else {
+       alert('Por favor, preencha todos os campos')
+     }
   };
 
   return (
@@ -17,21 +29,23 @@ const CircleForm: React.FC = () => {
         <input
          type="number"
          value={radius}
-         onChange={(e) => setRadius(Number(e.target.value))}
+         onChange={(e) => setRadius(parseFloat(e.target.value))}
          placeholder="Raio"
          className="border p-2 mb-4 w-full rounded"
         />
       </div>
       <button
         className="bg-blue-500 text-white p-2 w-full rounded"
-        onClick={calculateCircle}
+        onClick={handleCalculateCircle}
       >
         Calcular
       </button>
-      <div className="mt-4">
-        <p>Circunferência: {circunference} </p>
-        <p>Área: {area}</p>
-      </div>
+      {result && (
+        <div className="mt-4">
+          <p>Circunferência: {result?.perimeter} </p>
+          <p>Área: {result?.area}</p>
+        </div>
+      )}
     </div>
   );
 };

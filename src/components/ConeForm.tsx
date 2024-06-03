@@ -1,12 +1,25 @@
 import { useState } from "react";
+import { calculateCone } from "../api/api";
 
 const ConeForm: React.FC = () => {
-    const [radius, setRadius] = useState<number>();
-    const [height, setHeight] = useState<number>();
-    const [result, setResult] = useState<number>();
+    const [radius, setRadius] = useState<number | undefined>();
+    const [height, setHeight] = useState<number | undefined>();
+    const [result, setResult] = useState<{ surfaceArea: number, volume: number | null}>();
   
-    const calculateCone = () => {
-      console.log("calculou")
+    const handleCalculateCone = async () => {
+      
+      if(radius !== undefined && height !== undefined) {
+      try {
+        
+        const dadosCone = await calculateCone(radius, height);
+        setResult(dadosCone)
+
+      } catch (error) {
+        console.error(error)
+      }
+     } else {
+       alert('Por favor, preencha todos os campos')
+     }
     };
   
     return (
@@ -16,8 +29,8 @@ const ConeForm: React.FC = () => {
          <label className="block mb-2">Raio:</label>
          <input
           type="number"
-          value={radius}
-          onChange={(e) => setRadius(Number(e.target.value))}
+          value={radius || ''}
+          onChange={(e) => setRadius(parseFloat(e.target.value))}
           placeholder="Raio"
           className="border p-2 mb-4 w-full rounded"
         />
@@ -26,23 +39,25 @@ const ConeForm: React.FC = () => {
         <label className="block mb-4">Altura:</label>
         <input 
             type="number"
-            value={height}
+            value={height || ''}
             placeholder="Altura"
-            onClick={(e) => setHeight(Number(e.target))}
+            onChange={(e) => setHeight(parseFloat(e.target.value))}
             className="border p-2 mb-4 w-full rounded"/>
         </div>
         <button
           className="bg-blue-500 text-white p-2 w-full rounded"
-          onClick={calculateCone}
+          onClick={handleCalculateCone}
         >
           Calcular
         </button>
-        <div className="mt-4">
-          <p>Surface Area: </p>
-          <p>Volume: </p>
-        </div>
+        {result && (
+          <div className="mt-4">
+            <p>Área da superfície: {result?.surfaceArea}</p>
+            <p>Volume: {result?.volume}</p>
+         </div>
+        )}
       </div>
     );
-  };
-  
-  export default ConeForm;
+};
+
+export default ConeForm;
