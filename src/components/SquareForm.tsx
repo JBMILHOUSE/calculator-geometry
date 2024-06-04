@@ -6,19 +6,19 @@ const SquareForm: React.FC = () => {
   const [result, setResult] = useState<{ perimeter: number, area: number } | null>();
 
   const handleCalculateSquare = async () => {
-    
-    if(side !== undefined) {
+
+    if (side !== undefined) {
       try {
-        
+
         const dadosSquare = await calculateSquare(side);
         setResult(dadosSquare)
 
       } catch (error) {
         console.error(error)
       }
-     } else {
-       alert('Por favor, preencha todos os campos')
-     }
+    } else {
+      alert('Por favor, preencha todos os campos')
+    }
   };
 
   return (
@@ -27,12 +27,12 @@ const SquareForm: React.FC = () => {
       <div>
         <label className="block mb-2">Lado:</label>
         <input
-        type="number"
-        value={side}
-        onChange={(e) => setSide(parseFloat(e.target.value))}
-        placeholder="Lado"
-        className="border p-2 mb-4 w-full rounded"
-      />
+          type="number"
+          value={side}
+          onChange={(e) => setSide(parseFloat(e.target.value))}
+          placeholder="Lado"
+          className="border p-2 mb-4 w-full rounded"
+        />
       </div>
       <button
         className="bg-blue-500 text-white p-2 w-full rounded"
@@ -44,7 +44,7 @@ const SquareForm: React.FC = () => {
         <div className="mt-4">
           <p>Perímetro: {result?.perimeter}</p>
           <p>Área: {result?.area} </p>
-       </div>
+        </div>
       )}
     </div>
   );
