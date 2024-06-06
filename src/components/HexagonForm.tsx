@@ -23,7 +23,7 @@ const HexagonForm: React.FC = () => {
 
   return(
     <div className="p-4">
-      <h2 className="text-2x1 font-bold mb-4">Hexágono</h2> 
+      <h2 className="text-2x1 font-bold mb-4 text-center">Hexágono</h2> 
         <div className="mb-4">
           <label className="block mb-2">Lado:</label>
           <input 
@@ -42,7 +42,7 @@ const HexagonForm: React.FC = () => {
       </button>
 
       {result && (
-        <div className="mt-4">
+        <div className="mt-4 text-center">
           <p>Perímetro: {result?.perimeter}</p>
           <p>Área: {result?.area.toFixed(1)}</p>   
         </div>

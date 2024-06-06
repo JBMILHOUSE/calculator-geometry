@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { calculateCone } from "../api/api";
 
 const ConeForm: React.FC = () => {
@@ -24,7 +24,7 @@ const ConeForm: React.FC = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-2x1 font-bold mb-4">Cone</h2>
+      <h2 className="text-2x1 font-bold mb-4 text-center">Cone</h2>
       <div>
         <label className="block mb-2">Raio:</label>
         <input
@@ -51,7 +51,7 @@ const ConeForm: React.FC = () => {
         Calcular
       </button>
       {result && (
-        <div className="mt-4">
+        <div className="mt-4 text-center">
           <p>Área da superfície: {result?.surfaceArea}</p>
           <p>Volume: {result?.volume}</p>
         </div>

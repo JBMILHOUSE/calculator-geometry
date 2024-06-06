@@ -23,7 +23,7 @@ const SquareForm: React.FC = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-2x1 font-bold mb-4">Quadrado</h2>
+      <h2 className="text-2x1 font-bold mb-4 text-center">Quadrado</h2>
       <div>
         <label className="block mb-2">Lado:</label>
         <input
@@ -41,7 +41,7 @@ const SquareForm: React.FC = () => {
         Calcular
       </button>
       {result && (
-        <div className="mt-4">
+        <div className="mt-4 text-center">
           <p>Perímetro: {result?.perimeter}</p>
           <p>Área: {result?.area} </p>
         </div>

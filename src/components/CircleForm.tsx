@@ -24,7 +24,7 @@ const CircleForm: React.FC = () => {
 
   return (
     <div className="p-4 max-w-md mx-auto bg-white shadow rounded-lg">
-      <h2 className="text-2x1 font-bold mb-4">Círculo</h2>
+      <h2 className="text-2x1 font-bold mb-4 text-center">Círculo</h2>
       <div>
         <label className="block mb-2">Raio:</label>
         <input
@@ -42,7 +42,7 @@ const CircleForm: React.FC = () => {
         Calcular
       </button>
       {result && (
-        <div className="mt-4">
+        <div className="mt-4 text-center">
           <p>Circunferência: {result?.perimeter.toFixed(2)} </p>
           <p>Área: {formatNumber(result.area)}</p>
         </div>
